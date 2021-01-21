@@ -14,11 +14,17 @@ import javax.persistence.Id;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO) //identity?
 	private long id;
 	
 	@Column(nullable = false)
-	private String username;
+	private String firstName;
+	
+	@Column(nullable = false)
+	private String lastName;
+	
+	@Column(nullable = false, unique = true)
+	private String email;
 	
 	@Column(nullable = false)
 	private String password;
@@ -29,24 +35,47 @@ public class User {
 	
 	private String permissions = "";
 	
-	public User(String username, String password, String roles, String permissions) {
-		this.username = username;
-		this.password = password;
-		this.roles = roles;
-		this.permissions = permissions;
-		this.active = 1;
-	}
+//	public User(String username, String password, String roles, String permissions) {
+//		this.username = username;
+//		this.password = password;
+//		this.roles = roles;
+//		this.permissions = permissions;
+//		this.active = 1;
+//	}
 	
-	protected User() {
+	
+	public User() {
 		
 	}
+//	protected User() {
+//		
+//	}
+
+	public User(String firstName, String lastName, String email, String password, int active, String roles,
+		String permissions) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.email = email;
+	this.password = password;
+	this.active = active;
+	this.roles = roles;
+	this.permissions = permissions;
+}
 
 	public long getId() {
 		return id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 
 	public String getPassword() {
